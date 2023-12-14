@@ -50,6 +50,22 @@ function scene4asteroid() {
   io.emit('updateState', gameState);
 }
 
+function scene5attackoption() {
+  gameState.scene = 5;
+  io.emit('updateState', gameState);
+}
+
+function scene6cloud() {
+  gameState.scene = 6;
+  io.emit('updateState', gameState);
+}
+
+function scene7codeoption() {
+  gameState.scene = 7;
+  io.emit('updateState', gameState);
+}
+
+
 function scenelost() {
   gameState.scene = 99;
   io.emit('updateState', gameState);
@@ -160,6 +176,7 @@ io.on('connection', (socket) => {
     io.emit('displayPathOptions');
   });
 
+
 //   socket.on('afterTakeoff', () => {
 //     startScene25();
 //     startTimer();
@@ -175,6 +192,29 @@ io.on('connection', (socket) => {
     }
 
   });
+
+  socket.on('attackOptionScene', ()=>{
+    scene5attackoption();
+    io.emit('displayAttackOptions');
+  });
+  
+  socket.on('attackChoice', (choice) => {
+    
+    gameState.bChoice = choice;
+    if (gameState.bChoice === 'attack-option-1') {
+      scene6cloud();
+    } else if (gameState.bChoice === 'attack-option-2') {
+      scenelost();
+    }
+
+  });
+
+  socket.on('codeOptionScene', ()=>{
+    scene7codeoption();
+    io.emit('displayCodeOptions');
+  });
+
+
 
 //   socket.on('afterPath', () => {
 //     startScene35();

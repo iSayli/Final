@@ -26,10 +26,52 @@ document.addEventListener('DOMContentLoaded', () => {
         // Change the video source for scene 3
         gameVideo.src = 'videos/intropaused.mp4';
         smallTextElement.textContent = 'Choose the path.\n Noahs superpower will guide you (Hint: IPDL Lab)';
-        gameVideo.play();
         overlay.style.display = 'block';
         overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.700)';  
     }
+
+    else if (gameState.scene === 4) {
+        // Change the video source for scene 4
+        gameVideo.src = 'videos/asteroid.mp4';
+        overlay.style.display = 'none';  
+        smallTextElement.textContent = '';
+        setTimeout(() => {
+            socket.emit('attackOptionScene');
+        }, 32000);
+
+    }
+
+    else if (gameState.scene === 5) {
+        // Change the video source for scene 5
+        gameVideo.src = 'videos/asteroidpaused.mp4';
+        smallTextElement.textContent = 'Choose the path.\n Mannequins heel will guide you (Hint: First Floor Lab)';
+        overlay.style.display = 'block';
+    }
+
+    else if (gameState.scene === 6) {
+        // Change the video source for scene 6
+        gameVideo.src = 'videos/cloud.mp4';
+        overlay.style.display = 'none';  
+        smallTextElement.textContent = '';
+        setTimeout(() => {
+            socket.emit('codeOptionScene');
+        }, 15000);
+
+    }
+
+    else if (gameState.scene === 7) {
+        // Change the video source for scene 7
+        gameVideo.src = 'videos/cloudpaused.mp4';
+        smallTextElement.textContent = 'Choose the code.\n Palm tree will guide you (Hint: IPDL Lab)';
+        overlay.style.display = 'block';
+    }
+
+    else if (gameState.scene === 99) {
+        // Change the video source for scene 6        
+        gameVideo.src = 'videos/Lost.mp4';
+        smallTextElement.textContent = 'Oh no you have lost...';
+    }
+
 
      /*else if (gameState.scene === 2.5) {
         // Change the video source for scene 3

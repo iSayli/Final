@@ -89,6 +89,24 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('pathChoice', choice);
     }
 
+    socket.on('displayAttackOptions', () => {
+        attackbuttons.style.display = 'block';
+    });
+
+    function attackChoice(choice) {
+        attackbuttons.style.display = 'none';
+        socket.emit('attackChoice', choice);
+    }
+
+    socket.on('displayCodeOptions', () => {
+        codebuttons.style.display = 'block';
+    });
+
+    function codeChoice(choice) {
+        codebuttons.style.display = 'none';
+        socket.emit('codeChoice', choice);
+    }
+
 //     function afterTakeoff() {
 //       document.getElementById('game-play2').style.display = 'block';
 //       socket.emit('afterTakeoff');
