@@ -208,19 +208,6 @@ io.on('connection', (socket) => {
     clearInterval(timerInterval); // Clear any existing timers
   });
 
-  socket.on('startAgainPressed', ()=>{
-    io.emit('reloadPage'); // Emit an event to notify clients to reload the page
-    gameState.scene = 1;
-    gameState.bChoice = null;
-    clearInterval(timerInterval); // Clear any existing timers
-  });
-
-  socket.on('round2startscene', ()=>{
-    io.emit('reloadPage'); // Emit an event to notify clients to reload the page
-    gameState.scene = 1;
-    gameState.bChoice = null;
-    clearInterval(timerInterval); // Clear any existing timers
-  });
 
   socket.on('aftertimeover', ()=>{
     stopTimer();

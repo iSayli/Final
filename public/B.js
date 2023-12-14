@@ -19,10 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeOption2Button = document.getElementById('code-option-2');
     const codeOption3Button = document.getElementById('code-option-3');
 
-
-    const againButton = document.getElementById('againbutton');
-    const againOptionButton = document.getElementById('again-option');
-    
   
     const time = document.getElementById('time');
     const timerContainer = document.getElementById('timer-container');
@@ -64,10 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
       codeChoice('code-option-3');
     });
 
-    againOptionButton.addEventListener('click', () => {
-        startAgain('again-option');
-      });  
-  
     function startAdventure(choice) {
       startButton.style.display = 'none';
       pathbuttons.style.display = 'none';
@@ -135,106 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('codeChoice', choice);
     }
 
-    socket.on('startAgain', () => {
-        startButton.style.display = 'none';
-        pathbuttons.style.display = 'none';
-        attackbuttons.style.display = 'none';
-        codebuttons.style.display = 'none';
-  
-        againButton.style.display = 'block';
-    });
-    
-
-    function startAgain(choice) {
-        pathbuttons.style.display = 'none';
-        attackbuttons.style.display = 'none';
-        codebuttons.style.display = 'none';
-        againButton.style.display = 'none';
-        location.reload(true);
-        io.emit('startAgainPressed');
-    }
-
     socket.on('reloadPage', () => {
       location.reload(true); // Reload the entire page
-    });
-
-//     function afterTakeoff() {
-//       document.getElementById('game-play2').style.display = 'block';
-//       socket.emit('afterTakeoff');
-//     }
-  
-//     function pathChoice(choice) {
-//       document.getElementById('game-play2').style.display = 'none';
-//       socket.emit('pathChoice', choice);
-//       setTimeout(() => {
-//         afterPath();
-//         resetTimer();
-//       }, 32000);
-//     }
-  
-//     function afterPath() {
-//       document.getElementById('game-play3').style.display = 'block';
-//       socket.emit('afterPath');
-//     }
-  
-//     function attackChoice(choice) {
-//       document.getElementById('game-play3').style.display = 'none';
-//       socket.emit('attackChoice', choice);
-//       setTimeout(() => {
-//         afterAttack();
-//         resetTimer();
-//       }, 15000);
-//     }
-  
-//     function afterAttack() {
-//       document.getElementById('game-play4').style.display = 'block';
-//       socket.emit('afterAttack');
-//     }
-  
-//     function codeChoice(choice) {
-//       document.getElementById('game-play4').style.display = 'none';
-//       socket.emit('codeChoice', choice);
-//       setTimeout(() => {
-//         afterCode();
-//         resetTimer();
-//       }, 19000);
-//     }
-  
-//     function afterCode() {
-//       document.getElementById('game-play5').style.display = 'block';
-//       socket.emit('afterCode');
-//       setTimeout(() => {
-//         doyouwanna();
-//         resetTimer();
-//       }, 6000);
-  
-//     }
-  
-//     function doyouwanna() {
-//       document.getElementById('game-play1').style.display = 'block';
-//       document.getElementById('game-play2').style.display = 'none';
-//       document.getElementById('game-play3').style.display = 'none';
-//       document.getElementById('game-play4').style.display = 'none';
-//       document.getElementById('game-play5').style.display = 'none';
-//       socket.emit('doyouwanna');
-//     }
-  
-//     function startAgain() {
-//       resetTimer();
-//       document.getElementById('game-play2').style.display = 'none';
-//       document.getElementById('game-play3').style.display = 'none';
-//       document.getElementById('game-play4').style.display = 'none';
-//       document.getElementById('game-play5').style.display = 'none';
-//       socket.emit('startAgain');
-//       location.reload(true);
-//     }
-  
-  
-//     function resetTimer() {
-//       clearInterval(timerInterval);
-//       timerContainer.textContent = ''; // Clear the timer display
-//     }
-  
+    }); 
   
      // Listen for 'timerExpired' event to handle game over state
      socket.on('timerExpired', () => {
