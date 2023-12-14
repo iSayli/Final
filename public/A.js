@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 3) {
         // Change the video source for scene 3
         gameVideo.src = 'videos/intropaused.mp4';
-        smallTextElement.textContent = 'Choose the path.\n HyunJoo Oh superpower will guide you (Hint: IPDL Lab Door)';
+        smallTextElement.textContent = 'Choose the path.\n HyunJoo Ohs superpower will guide you (Hint: IPDL Lab Door)';
         overlay.style.display = 'block';
         overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.700)';  
     }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 5) {
         // Change the video source for scene 5
         gameVideo.src = 'videos/asteroidpaused.mp4';
-        smallTextElement.textContent = 'To go further you must know this Human Centered Design Firm....The center of the student job board will help you explore the path (Hint: First Floor Near the Stairs)';
+        smallTextElement.textContent = 'To go further you must know this Human Centered Design Firm....The center of the student job board will help you explore the path (Hint: Second Floor Near the Stairs)';
         overlay.style.display = 'block';
     }
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 7) {
         // Change the video source for scene 7
         gameVideo.src = 'videos/cloudpaused.mp4';
-        smallTextElement.textContent = 'You need to know this code to inflitrate. The majority objects in the glass case in front of the main stairs will help ';
+        smallTextElement.textContent = 'You need to know this code to inflitrate. The majority of objects in the glass case in front of the main stairs will help ';
         overlay.style.display = 'block';
     }
 
