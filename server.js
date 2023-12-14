@@ -81,6 +81,11 @@ function scenelost() {
   io.emit('updateState', gameState);
 }
 
+function timerExpired() {
+  gameState.scene = 0;
+  io.emit('updateState', gameState);
+}
+
 function scenestartagain() {
   gameState.scene = 100;
   io.emit('updateState', gameState);
@@ -92,98 +97,34 @@ function round2startscene() {
 }
 
 
-// function startScene25() {
-//   gameState.scene = 2.5;
-//   io.emit('updateState', gameState);
-// }
+let timerInterval; // Variable to store the timer interval
+const timerDuration = 120; // 2 minutes in seconds
 
 
-// function startScene3() {
-//   gameState.scene = 3;
-//   io.emit('updateState', gameState);
+function startTimer() {
+   clearInterval(timerInterval); // Clear any existing timers
 
-// }
+   const startTime = Date.now();
 
-// function startScene35() {
-//   gameState.scene = 3.5;
-//   io.emit('updateState', gameState);
+   // Notify clients to start the timer
+   io.emit('startTimer');
 
-// }
+   // Timer logic
+   timerInterval = setInterval(() => {
+     const elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Convert milliseconds to seconds
+     if (elapsedTime >= timerDuration) {
+       // Time is up, trigger game over
+       io.emit('timerExpired');
+       timerExpired();
+       stopTimer(); // Clear the interval when the timer expires
+     }
+   }, 1000);
+}
 
-
-// function startScene4() {
-//   gameState.scene = 4;
-//   io.emit('updateState', gameState);
-
-// }
-
-// function startScene45() {
-//   gameState.scene = 4.5;
-//   io.emit('updateState', gameState);
-// }
-
-// function startScene5() {
-//     gameState.scene = 5;
-//     io.emit('updateState', gameState);  
-// }
-
-// function startScene54() {
-//   gameState.scene = 5.4;
-//   io.emit('updateState', gameState);
-// }
-
-// function doyouwanna() {
-//   gameState.scene = 5.5;
-//   io.emit('updateState', gameState);
-//   setTimeout(() => {
-//     startAgain();
-//   }, 10000);    
-// }
-
-// function startScene6() {
-//     gameState.scene = 6;
-//     io.emit('updateState', gameState);
-//     setTimeout(() => {
-//       io.emit('doyouwanna');
-//     }, 15000);    
-
-// }
-
-  
-// function startAgain() {
-//   io.emit('reloadPage'); // Emit an event to notify clients to reload the page
-//   gameState.scene = 1;
-//   gameState.bChoice = null;
-// //  io.emit('resetGame'); // Emit an event to reset both clients
-//   clearInterval(timerInterval); // Clear any existing timers
-// }
-// let timerInterval; // Variable to store the timer interval
-// const timerDuration = 120; // 2 minutes in seconds
-
-
-// function startTimer() {
-//   clearInterval(timerInterval); // Clear any existing timers
-
-//   const startTime = Date.now();
-
-//   // Notify clients to start the timer
-//   io.emit('startTimer');
-
-//   // Timer logic
-//   timerInterval = setInterval(() => {
-//     const elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Convert milliseconds to seconds
-//     if (elapsedTime >= timerDuration) {
-//       // Time is up, trigger game over
-//       io.emit('timerExpired');
-//       stopTimer(); // Clear the interval when the timer expires
-//     }
-//   }, 1000);
-// }
-
-// function stopTimer() {
-//   clearInterval(timerInterval);
-//   io.emit('stopTimer');
-// }
+ function stopTimer() {
+   clearInterval(timerInterval);
+   io.emit('stopTimer');
+ }
 
 
 io.on('connection', (socket) => {
@@ -191,25 +132,23 @@ io.on('connection', (socket) => {
    socket.on('startAdventure', (choice)=>{
     gameState.bChoice = choice;
     scene2intro();
+    stopTimer();
    });
 
    socket.on('pathOptionScene', ()=>{
     scene3pathoption();
     io.emit('displayPathOptions');
+    startTimer();
   });
-
-
-//   socket.on('afterTakeoff', () => {
-//     startScene25();
-//     startTimer();
-//   });
 
   socket.on('pathChoice', (choice) => {
     
     gameState.bChoice = choice;
     if (gameState.bChoice === 'path-option-1') {
+      stopTimer();
       scene4asteroid();
     } else if (gameState.bChoice === 'path-option-2') {
+      stopTimer();
       scenelost();
     }
 
@@ -218,14 +157,18 @@ io.on('connection', (socket) => {
   socket.on('attackOptionScene', ()=>{
     scene5attackoption();
     io.emit('displayAttackOptions');
+    startTimer();
+
   });
   
   socket.on('attackChoice', (choice) => {
     
     gameState.bChoice = choice;
     if (gameState.bChoice === 'attack-option-1') {
+      stopTimer();
       scene6cloud();
     } else if (gameState.bChoice === 'attack-option-2') {
+      stopTimer();
       scenelost();
     }
 
@@ -234,84 +177,54 @@ io.on('connection', (socket) => {
   socket.on('codeOptionScene', ()=>{
     scene7codeoption();
     io.emit('displayCodeOptions');
+    startTimer();
   });
 
   socket.on('codeChoice', (choice) => {
     
     gameState.bChoice = choice;
     if (gameState.bChoice === 'code-option-1') {
+      stopTimer();
       scene8cargo();
     } else if (gameState.bChoice === 'code-option-2') {
+      stopTimer();
       scenelost();
     } else if (gameState.bChoice === 'code-option-2') {
+      stopTimer();
       scenelost();
     }
 
   });
 
   socket.on('victoryScene', ()=>{
+    stopTimer();
     scene9victory();
   });
 
   socket.on('startAgainScene', ()=>{
+    stopTimer();
     scenestartagain();
     io.emit('startAgain');
   });
 
-  socket.on('round2startscene', ()=>{
+  socket.on('startAgainPressed', ()=>{
+    stopTimer();
     round2startscene();
-    io.emit('startround2')
+    io.emit('startAgain');
   });
 
 
-//   socket.on('afterPath', () => {
-//     startScene35();
-//     startTimer();
-//   });
+  socket.on('round2startscene', ()=>{
+    stopTimer();
+    round2startscene();
+    io.emit('startround2');
+  });
 
-//   socket.on('afterAttack', () => {
-//     startScene45();
-//     startTimer();
-//   });
+  socket.on('aftertimeover', ()=>{
+    stopTimer();
+    scenelost();
+    });
 
-//   socket.on('attackChoice', (choice) => {
-//     gameState.bChoice = choice;
-
-//     if (gameState.bChoice === 'b-option-1') {
-//       stopTimer();
-//       startScene4();
-//     } else if (gameState.bChoice === 'b-option-2') {
-//       stopTimer();
-//       startScene6();
-//     }
-//   });
-
-//   socket.on('codeChoice', (choice) => {
-//     gameState.bChoice = choice;
-//     if (gameState.bChoice === 'c-option-1') {
-//       stopTimer();
-//       startScene5();
-//     } else if (gameState.bChoice === 'c-option-2' || gameState.bChoice === 'c-option-3') {
-//       stopTimer();
-//       startScene6();
-//     }
-//   });
-
-//   socket.on('afterCode', () => {
-//     startScene54();
-//     //startTimer();
-//   });
-
-//   socket.on('doyouwanna', () => {
-//     doyouwanna();
-//     //startTimer();
-//   });
-
-//   socket.on('startAgain', ()=>{
-//     stopTimer();
-//     startAgain();
-//   });
-  
 });
 
 /* const port = process.env.PORT || 3000;

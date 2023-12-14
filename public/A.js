@@ -106,10 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             socket.emit('round2startscene');
         }, 20000);
-    }else if (gameState.scene === 21) {
+    }
+    else if (gameState.scene === 21) {
         // Change the video source for new start        
         gameVideo.src = 'videos/startScreen.mp4';
         smallTextElement.textContent = 'Recruit, we need to steal cargo from the enemy. Do you dare to start this space journey?';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.178)';  
+    }else if (gameState.scene === 0) {
+        // Change the video source for new start        
+        gameVideo.src = 'black.mp4';
+        smallTextElement.textContent = 'Your timer has expired.';
+        setTimeout(() => {
+            socket.emit('aftertimeover');
+        }, 5000);
     }
     });
 

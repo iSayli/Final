@@ -105,8 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function startAgain(choice) {
-        againButton.style.display = 'none';
+        againButton.style.display = 'none'
         startButton.style.display = 'block';
+        io.emit('startAgainPressed');
     }
 
     socket.on('startround2', () => {
@@ -192,54 +193,41 @@ document.addEventListener('DOMContentLoaded', () => {
 //     }
   
   
-//     // Listen for 'timerExpired' event to handle game over state
-//     socket.on('timerExpired', () => {
-//       // Perform actions when the timer expires (e.g., restart the game)
-//       timerContainer.textContent = ``;
-//       startAgain();
-//     });
+     // Listen for 'timerExpired' event to handle game over state
+     socket.on('timerExpired', () => {
+       startButton.style.display='none';
+       pathbuttons.style.display='none';
+       attackbuttons.style.display='none';
+       codebuttons.style.display='none';
+       againButton.style.display='none';
+
+       time.style.display='none';
+       timerContainer.textContent = ``;
+    });
   
-//     socket.on('startTimer', () => {
-//       let timeLeft = 120; // 2 minutes in seconds
+     socket.on('startTimer', () => {
+       let timeLeft = 120; // 2 minutes in seconds
   
-//       // Timer logic
-//       timerInterval = setInterval(() => {
-//         const minutes = Math.floor(timeLeft / 60);
-//         const seconds = timeLeft % 60;
-//         timerContainer.textContent = `YOU ONLY HAVE ${minutes}:${seconds} LEFT TO ANSWER`;
-//         if (timeLeft <= 0) {
-//           clearInterval(timerInterval);
-//           socket.emit('timerExpired');
-//         } else {
-//           timeLeft--;
-//         }
-//       }, 1000);
-//     });
+       // Timer logic
+       timerInterval = setInterval(() => {
+         const minutes = Math.floor(timeLeft / 60);
+         const seconds = timeLeft % 60;
+         time.style.display='block';
+         timerContainer.textContent = `${minutes}:${seconds}`;
+         if (timeLeft <= 0) {
+           clearInterval(timerInterval);
+         } else {
+           timeLeft--;
+         }
+       }, 1000);
+    });
   
-//     socket.on('stopTimer', () => {
-//       clearInterval(timerInterval);
-//       timerContainer.textContent = ` `;
-//     });
+     socket.on('stopTimer', () => {
+       clearInterval(timerInterval);
+       time.style.display='none';
+       timerContainer.textContent = ` `;
+     });
   
-  
-//    /*  socket.on('resetGame', () => {
-//       resetTimer(); // Reset the timer
-//       document.getElementById('game-play1').style.display = 'block'; // Display the initial screen
-//       document.getElementById('game-play2').style.display = 'none';
-//       document.getElementById('game-play3').style.display = 'none';
-//       document.getElementById('game-play4').style.display = 'none';
-//       document.getElementById('game-play5').style.display = 'none';
-//     }); */
-  
-//     socket.on('aftergameover', () => {
-//       resetTimer();
-//       startAgain();
-//     });
-  
-//     socket.on('doyouwanna', () => {
-//       resetTimer();
-//       doyouwanna();
-//     });
   
   
      });
