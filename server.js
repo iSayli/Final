@@ -202,12 +202,24 @@ io.on('connection', (socket) => {
   });
 
   socket.on('startAgainScene', ()=>{
+    stopTimer();
+    scenestartagain();
+    io.emit('startAgain');
+  });
+
+  socket.on('startAgainPressed', ()=>{
     io.emit('reloadPage'); // Emit an event to notify clients to reload the page
     gameState.scene = 1;
     gameState.bChoice = null;
     clearInterval(timerInterval); // Clear any existing timers
   });
 
+  socket.on('round2startscene', ()=>{
+    io.emit('reloadPage'); // Emit an event to notify clients to reload the page
+    gameState.scene = 1;
+    gameState.bChoice = null;
+    clearInterval(timerInterval); // Clear any existing timers
+  });
 
   socket.on('aftertimeover', ()=>{
     stopTimer();

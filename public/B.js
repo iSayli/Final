@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeOption2Button = document.getElementById('code-option-2');
     const codeOption3Button = document.getElementById('code-option-3');
 
+
+    const againButton = document.getElementById('againbutton');
+    const againOptionButton = document.getElementById('again-option');
+    
   
     const time = document.getElementById('time');
     const timerContainer = document.getElementById('timer-container');
@@ -60,6 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
       codeChoice('code-option-3');
     });
 
+    againOptionButton.addEventListener('click', () => {
+        startAgain('again-option');
+      });  
+  
     function startAdventure(choice) {
       startButton.style.display = 'none';
       pathbuttons.style.display = 'none';
@@ -127,9 +135,30 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('codeChoice', choice);
     }
 
+    socket.on('startAgain', () => {
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+  
+        againButton.style.display = 'block';
+    });
+    
+
+    function startAgain(choice) {
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+        location.reload(true);
+        io.emit('startAgainPressed');
+    }
+
     socket.on('reloadPage', () => {
       location.reload(true); // Reload the entire page
-    }); 
+    });
+
+ 
   
      // Listen for 'timerExpired' event to handle game over state
      socket.on('timerExpired', () => {
