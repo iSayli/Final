@@ -154,14 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
         io.emit('startAgainPressed');
     }
 
-    socket.on('reloadpage', () => {
-        location.reload(true);
-
-        startButton.style.display = 'none';
-        pathbuttons.style.display = 'none';
-        attackbuttons.style.display = 'none';
-        codebuttons.style.display = 'none';  
-        againButton.style.display = 'none';
+    socket.on('reloadPage', () => {
+      location.reload(true); // Reload the entire page
     });
 
 //     function afterTakeoff() {

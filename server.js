@@ -189,7 +189,7 @@ io.on('connection', (socket) => {
     } else if (gameState.bChoice === 'code-option-2') {
       stopTimer();
       scenelost();
-    } else if (gameState.bChoice === 'code-option-2') {
+    } else if (gameState.bChoice === 'code-option-3') {
       stopTimer();
       scenelost();
     }
@@ -202,9 +202,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('startAgainScene', ()=>{
-    stopTimer();
-    scenestartagain();
-    io.emit('startAgain');
+    io.emit('reloadPage'); // Emit an event to notify clients to reload the page
+    gameState.scene = 1;
+    gameState.bChoice = null;
+    clearInterval(timerInterval); // Clear any existing timers
   });
 
   socket.on('startAgainPressed', ()=>{

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 3) {
         // Change the video source for scene 3
         gameVideo.src = 'videos/intropaused.mp4';
-        smallTextElement.textContent = 'Choose the path.\n Noahs superpower will guide you (Hint: IPDL Lab)';
+        smallTextElement.textContent = 'Choose the path.\n Noahs superpower will guide you (Hint: IPDL Lab Door)';
         overlay.style.display = 'block';
         overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.700)';  
     }
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smallTextElement.textContent = '';
         setTimeout(() => {
             socket.emit('victoryScene');
-        }, 19800);
+        }, 20000);
 
     }
 
