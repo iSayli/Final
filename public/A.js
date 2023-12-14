@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smallTextElement.textContent = '';
         setTimeout(() => {
             socket.emit('victoryScene');
-        }, 5000);
+        }, 19000);
 
     }
 
