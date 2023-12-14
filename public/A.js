@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smallTextElement.textContent = '';
         setTimeout(() => {
             socket.emit('victoryScene');
-        }, 19900);
+        }, 33000);
 
     }
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smallTextElement.textContent = 'Congratulations! You have won!';
         setTimeout(() => {
             socket.emit('startAgainScene');
-        }, 5800);
+        }, 12000);
     }
 
 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         smallTextElement.textContent = 'Oh no you have lost...';
         setTimeout(() => {
             socket.emit('startAgainScene');
-        }, 8000);
+        }, 11000);
 
     }
 
