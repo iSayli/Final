@@ -70,49 +70,98 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function startAdventure(choice) {
       startButton.style.display = 'none';
+      pathbuttons.style.display = 'none';
+      attackbuttons.style.display = 'none';
+      codebuttons.style.display = 'none';
+      againButton.style.display = 'none';
       socket.emit('startAdventure',choice);
     }
 
     socket.on('displayPathOptions', () => {
+        startButton.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+  
         pathbuttons.style.display = 'block';
     });
 
     function pathChoice(choice) {
+        startButton.style.display = 'none';
         pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+  
         socket.emit('pathChoice', choice);
     }
 
     socket.on('displayAttackOptions', () => {
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+  
         attackbuttons.style.display = 'block';
     });
 
     function attackChoice(choice) {
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
         attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+  
+        
         socket.emit('attackChoice', choice);
     }
 
     socket.on('displayCodeOptions', () => {
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        againButton.style.display = 'none';
+  
         codebuttons.style.display = 'block';
     });
 
     function codeChoice(choice) {
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
         codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+  
         socket.emit('codeChoice', choice);
     }
 
     socket.on('startAgain', () => {
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+  
         againButton.style.display = 'block';
     });
+    
 
     function startAgain(choice) {
-        againButton.style.display = 'none'
-        startButton.style.display = 'block';
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';
+        againButton.style.display = 'none';
+        location.reload(true);
         io.emit('startAgainPressed');
     }
 
-    socket.on('startround2', () => {
+    socket.on('reloadpage', () => {
+        location.reload(true);
+
+        startButton.style.display = 'none';
+        pathbuttons.style.display = 'none';
+        attackbuttons.style.display = 'none';
+        codebuttons.style.display = 'none';  
         againButton.style.display = 'none';
-        startAgain('again-option');
     });
 
 //     function afterTakeoff() {

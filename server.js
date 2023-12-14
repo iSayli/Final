@@ -208,16 +208,17 @@ io.on('connection', (socket) => {
   });
 
   socket.on('startAgainPressed', ()=>{
-    stopTimer();
-    round2startscene();
-    io.emit('startAgain');
+    io.emit('reloadPage'); // Emit an event to notify clients to reload the page
+    gameState.scene = 1;
+    gameState.bChoice = null;
+    clearInterval(timerInterval); // Clear any existing timers
   });
 
-
   socket.on('round2startscene', ()=>{
-    stopTimer();
-    round2startscene();
-    io.emit('startround2');
+    io.emit('reloadPage'); // Emit an event to notify clients to reload the page
+    gameState.scene = 1;
+    gameState.bChoice = null;
+    clearInterval(timerInterval); // Clear any existing timers
   });
 
   socket.on('aftertimeover', ()=>{
@@ -227,14 +228,15 @@ io.on('connection', (socket) => {
 
 });
 
-/* const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 server.listen(port, () => {
 console.log(`Server is running on https://choices-production.up.railway.app/`);
-}); */
+}); 
 
-const port = process.env.PORT || 3000;
+/* const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 
 server.listen(port, host, () => {
   console.log(`Server is running on http://${host}:${port}`);
 });
+ */

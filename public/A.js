@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             socket.emit('startAgainScene');
         }, 5800);
-
     }
 
 
