@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const smallTextElement = document.getElementById('a-small-text');
     const overlay = document.getElementById('overlay');
 
-    const socket = io.connect();
+    const socket = io.connect('https://final-production-dd09.up.railway.app/');
 
     socket.on('reloadPage', () => {
         location.reload(true); // Reload the entire page

@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-    const socket = io.connect();
+    const socket = io.connect('https://final-production-dd09.up.railway.app/');
     
     const startButton = document.getElementById('startbutton');
     const startOptionButton = document.getElementById('start-option');
