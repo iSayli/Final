@@ -98,7 +98,7 @@ function round2startscene() {
 
 
 let timerInterval; // Variable to store the timer interval
-const timerDuration = 120; // 2 minutes in seconds
+const timerDuration = 240; // 4 minutes in seconds
 
 
 function startTimer() {

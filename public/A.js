@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 3) {
         // Change the video source for scene 3
         gameVideo.src = 'videos/intropaused.mp4';
-        smallTextElement.textContent = 'Choose the path.\n Noahs superpower will guide you (Hint: IPDL Lab)';
+        smallTextElement.textContent = 'Choose the path.\n HyunJoo Oh superpower will guide you (Hint: IPDL Lab Door)';
         overlay.style.display = 'block';
         overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.700)';  
     }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 5) {
         // Change the video source for scene 5
         gameVideo.src = 'videos/asteroidpaused.mp4';
-        smallTextElement.textContent = 'Choose the path.\n Mannequins heel will guide you (Hint: First Floor Lab)';
+        smallTextElement.textContent = 'The edge of the student job board will help you explore the path (Hint: First Floor Near the Stairs)';
         overlay.style.display = 'block';
     }
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (gameState.scene === 7) {
         // Change the video source for scene 7
         gameVideo.src = 'videos/cloudpaused.mp4';
-        smallTextElement.textContent = 'Choose the code.\n Palm tree will guide you (Hint: IPDL Lab)';
+        smallTextElement.textContent = 'Choose the code.\n The inpur from SEED will guide you (Hint: IPDL Lab)';
         overlay.style.display = 'block';
     }
 
