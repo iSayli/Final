@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B</title>
+  <link rel="stylesheet" href="B.css">
+</head>
+<body>
+
+  <div id="button-space">
+
+    <div id="startbutton" >
+      <button id="start-option" onclick="startAdventure('start-option')">START ADVENTURE</button>
+    </div>
+  
+    <div id="pathbuttons" style="display: none">
+      <button id="path-option-1" onclick="pathChoice('path-option-1')">Trecherous Asteroid Route</button>
+      <button id="path-option-2" onclick="pathChoice('path-option-2')">Long Mysterious Path</button>
+    </div>
+  
+    <div id="attackbuttons" style="display: none">
+      <button id="attack-option-1" onclick="attackChoice('attack-option-1')">Hide in Clouds</button>
+      <button id="attack-option-2" onclick="attackChoice('attack-option-2')">Attack Enemies</button>
+    </div>
+  
+    <div id="codebuttons" style="display: none">
+      <button id="code-option-1" onclick="codeChoice('code-option-1')">5CD245</button>
+      <button id="code-option-2" onclick="codeChoice('code-option-2')">FCD201</button>
+      <button id="code-option-3" onclick="codeChoice('code-option-3')">HSG271</button>
+    </div>
+  
+    <div id="againbutton" style="display: none">
+      <button id="again-option" onclick="startAgain()">START AGAIN</button>
+    </div>  
+  </div>
+
+  <div id="time" style="display: none">
+    <div id="timer-container"></div>
+    <div id="timer-text">LEFT TO ANSWER</div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="B.js"></script>
+
+</body>
+</html>

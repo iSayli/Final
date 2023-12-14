@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A</title>
+  <link rel="stylesheet" href="A.css">
+</head>
+<body>
+
+    <div id="video-container">
+        <!-- Embed your YouTube video here -->
+        <video id="game-video" muted autoplay loop>
+            <source src="videos/startScreen.mp4" type="video/mp4" />
+        </video>
+    </div>
+
+    <div id="overlay">
+
+    </div>
+
+    <div id="audio-container">
+        <audio autoplay loop>
+          <source src="audios/background.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+    </div>
+      
+  <h3 id="a-small-text">Recruit, we need to steal cargo from the enemy. Do you dare to start this space journey?</h3>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="A.js"></script>
+</body>
+</html>

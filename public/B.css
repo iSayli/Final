@@ -1,0 +1,79 @@
+/* B.css styles for B.html */
+
+body {
+    font-family:'Courier New', Courier, monospace;
+    background-color: #060014;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url(Bbackground.png);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+  
+  }
+  
+  #button-space{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  #pathbuttons,#attackbuttons,#codebuttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  }
+  
+  button {
+  font-family:'Courier New', Courier, monospace;
+  font-weight: bolder;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  cursor: pointer;
+  border-style:double;
+  border-color: rgb(107, 223, 255);
+  border-radius: 5px;
+  width: 800px;
+  font-size: 80px;
+  padding: 80px;
+  background-color: #00000038;
+  }
+  
+  #path-option-1,#path-option-2,#attack-option-1,#attack-option-2{
+  font-size: 50px;
+  padding: 50px;  
+  margin-top: 20px;
+  }
+  
+  #code-option-1,#code-option-2,#code-option-3{
+  font-size: 36px;
+  padding: 30px;
+  margin-top: 20px;
+  }
+  
+  #time{
+    position: absolute;
+    bottom: 0; /* Adjust as needed */
+    right: 0;
+    text-align: center;
+    font-size: 28px;
+    color: #ff0000;
+    background: linear-gradient(180deg, #1B0B29 0%, #1B1330 63.04%, #1B3159 100%);;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-color: #1B3159;
+    border-style: groove;
+  }
+
+  #timer-container{
+    font-size: 80px;
+  }

@@ -1,0 +1,39 @@
+/* A.css styles for A.html */
+
+body {
+    font-family:'Courier New', Courier, monospace;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+  }
+
+  #game-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;  
+  }
+
+  #overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.183);
+  }
+  
+  #a-small-text {
+    position: absolute;
+    bottom: 150px; /* Adjust as needed */
+    left: 50%;
+    width: 66%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 44px;
+    color: #ffffff;
+  }
+  
+  /* Add more styles as needed for your specific content */
