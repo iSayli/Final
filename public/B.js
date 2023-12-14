@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
      socket.on('startTimer', () => {
-       let timeLeft = 240; // 2 minutes in seconds
+       let timeLeft = 120; // 2 minutes in seconds
   
        // Timer logic
        timerInterval = setInterval(() => {
