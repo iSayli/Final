@@ -73,13 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
       socket.emit('startAdventure',choice);
     }
 
-    socket.on('connect', () => {
-        console.log('Connected to the server');
-
-        // Add your logic here if needed after a successful connection
-        // For example, you can set up additional event listeners or perform other tasks
-    });
-
     socket.on('displayPathOptions', () => {
         pathbuttons.style.display = 'block';
     });
@@ -106,6 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
         codebuttons.style.display = 'none';
         socket.emit('codeChoice', choice);
     }
+
+    socket.on('startAgain', () => {
+        againButton.style.display = 'block';
+    });
+
+    function startAgain(choice) {
+        againButton.style.display = 'none';
+        startButton.style.display = 'block';
+    }
+
+    socket.on('startround2', () => {
+        againButton.style.display = 'none';
+        startAgain('again-option');
+    });
 
 //     function afterTakeoff() {
 //       document.getElementById('game-play2').style.display = 'block';

@@ -65,11 +65,33 @@ function scene7codeoption() {
   io.emit('updateState', gameState);
 }
 
+function scene8cargo() {
+  gameState.scene = 8;
+  io.emit('updateState', gameState);
+}
+
+function scene9victory() {
+  gameState.scene = 9;
+  io.emit('updateState', gameState);
+}
+
 
 function scenelost() {
   gameState.scene = 99;
   io.emit('updateState', gameState);
 }
+
+function scenestartagain() {
+  gameState.scene = 100;
+  io.emit('updateState', gameState);
+}
+
+function round2startscene() {
+  gameState.scene = 21;
+  io.emit('updateState', gameState);
+}
+
+
 // function startScene25() {
 //   gameState.scene = 2.5;
 //   io.emit('updateState', gameState);
@@ -214,6 +236,32 @@ io.on('connection', (socket) => {
     io.emit('displayCodeOptions');
   });
 
+  socket.on('codeChoice', (choice) => {
+    
+    gameState.bChoice = choice;
+    if (gameState.bChoice === 'code-option-1') {
+      scene8cargo();
+    } else if (gameState.bChoice === 'code-option-2') {
+      scenelost();
+    } else if (gameState.bChoice === 'code-option-2') {
+      scenelost();
+    }
+
+  });
+
+  socket.on('victoryScene', ()=>{
+    scene9victory();
+  });
+
+  socket.on('startAgainScene', ()=>{
+    scenestartagain();
+    io.emit('startAgain');
+  });
+
+  socket.on('round2startscene', ()=>{
+    round2startscene();
+    io.emit('startround2')
+  });
 
 
 //   socket.on('afterPath', () => {
